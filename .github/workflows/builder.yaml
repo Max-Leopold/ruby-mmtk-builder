@@ -39,6 +39,11 @@ jobs:
         name: tag
     - name: Package
       run: TAG=`cat tag/tag.txt` WITH_DEBUG=true ./package.sh
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: '*.tar.gz'
+        tag_name: debug-nightly
     - name: Upload build
       uses: actions/upload-artifact@v3
       with:
@@ -60,6 +65,11 @@ jobs:
         name: tag
     - name: Package
       run: TAG=`cat tag/tag.txt` ./package.sh
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: '*.tar.gz'
+        tag_name: release-nightly
     - name: Upload build
       uses: actions/upload-artifact@v3
       with:
